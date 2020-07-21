@@ -124,6 +124,12 @@ function getCards(listId) {
   });
 }
 
+module.exports = {
+  getBoard,
+  getLists,
+  getCards
+}
+
 // Task 1 board -> lists -> cards for list qwsa221
 // Task 2 board -> lists -> cards for list qwsa221 and cards for list jwkh245 simultaneously
 // Task 3 board -> lists -> cards for all lists simultaneously
