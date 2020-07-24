@@ -61,21 +61,15 @@ Promise.all([fetchRandomNumbers(), fetchRandomString()])
   .catch((err) => console.error(err));
 
 // **Task 4**: Fetch 10 random numbers simultaneously -> and print their sum.
-
-Promise.all([
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-  fetchRandomNumbers(),
-])
-  .then((value) => {
-    return value.reduce((acc, curr) => acc + curr);
+let promiseArray = [];
+for (let i = 0; i < 10; i++) {
+  promiseArray.push(fetchRandomNumbers());
+}
+let array = Promise.all(promiseArray);
+array
+  .then((data) => {
+    const sum = data.reduce((acc, curr) => acc + curr);
+    return sum;
   })
-  .then((val) => console.log(val))
-  .catch((err) => console.error(err));
+  .then((sum) => console.log(sum))
+  .
