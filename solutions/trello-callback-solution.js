@@ -18,12 +18,14 @@ const cardForListqwsa221 = () => getFunctions.getCards("qwsa221", printCard);
 const printLists = (lists) => {
   console.log("+++++++++++++++++printing lists+++++++++++++");
   console.log(lists);
-  console.log("++++++++++++fetching cards for single id++++++++++++");
-  cardForListqwsa221();
-  console.log("++++++++++++fetching cards for two id++++++++++++");
 
+  console.log("++++++fetching cards for single id++++++++++");
+  cardForListqwsa221();
+
+  console.log("++++++++fetching cards for two id+++++++++++");
   getCardById(lists);
-  console.log("++++++++++++fetching cards for all ids++++++++++++");
+
+  console.log("++++++++fetching cards for all ids++++++++++");
   getWholeCardById(lists);
 };
 
