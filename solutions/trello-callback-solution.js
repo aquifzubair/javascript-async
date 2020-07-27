@@ -1,19 +1,19 @@
-const getFunctions = require("../trello-callbacks.js");
+const { getBoard, getLists, getCards} = require("../trello-callbacks.js");
 
 const printCard = (card) => console.log(card);
 
 const getWholeCardById = (lists) => {
-  lists.forEach((list) => getFunctions.getCards(list.id, printCard));
+  lists.forEach((list) => getCards(list.id, printCard));
 };
 
 const getCardById = (lists) => {
   const cardToPrint = { qwsa221: true, jwkh245: true };
   lists.forEach((list) => {
-    if (cardToPrint[list.id]) getFunctions.getCards(list.id, printCard);
+    if (cardToPrint[list.id]) getCards(list.id, printCard);
   });
 };
 
-const cardForListqwsa221 = () => getFunctions.getCards("qwsa221", printCard);
+const cardForListqwsa221 = () => getCards("qwsa221", printCard);
 
 const printLists = (lists) => {
   console.log("+++++++++++++++++printing lists+++++++++++++");
@@ -29,10 +29,10 @@ const printLists = (lists) => {
   getWholeCardById(lists);
 };
 
-const getListById = (id) => getFunctions.getLists(id, printLists);
+const getListById = (id) => getLists(id, printLists);
 
 const getIdFromBoard = (board) => getListById(board.id);
 
-const main = () => getFunctions.getBoard(getIdFromBoard);
+const main = () => getBoard(getIdFromBoard);
 
 main();

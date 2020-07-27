@@ -1,13 +1,12 @@
-const getFunction = require("../trello-promises");
+const { getBoard, getLists, getCards } = require("../trello-promises");
 
-getFunction
-  .getBoard((data) => data)
-  .then((data) => getFunction.getLists(data.id))
+getBoard((data) => data)
+  .then((data) => getLists(data.id))
   .then((data) => {
     let array = [];
     let promiseArray = [];
 
-    promiseArray.push(getFunction.getCards("qwsa221"));
+    promiseArray.push(getCards("qwsa221"));
 
     for (let i = 0; i < data.length; i++) {
       let cardToPoint = {
@@ -15,14 +14,14 @@ getFunction
         jwkh245: true,
       };
       if (cardToPoint[data[i].id]) {
-        promiseArray.push(getFunction.getCards(data[i].id));
+        promiseArray.push(getCards(data[i].id));
       }
     }
 
     for (let i = 0; i < data.length; i++) {
-      promiseArray.push(getFunction.getCards(data[i].id));
+      promiseArray.push(getCards(data[i].id));
     }
-    array = Promise.all(promiseArray)
+    array = Promise.all(promiseArray);
     return array;
   })
   .then((data) => {

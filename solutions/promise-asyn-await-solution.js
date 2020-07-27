@@ -1,9 +1,9 @@
-const getFunction = require("../trello-promises");
+const  {getBoard, getLists, getCards } = require("../trello-promises");
 
 const main = async () => {
   let board;
   try {
-    board = await getFunction.getBoard();
+    board = await getBoard();
   } catch (err) {
     console.error("Error during fetching board", err);
   }
@@ -11,13 +11,13 @@ const main = async () => {
   let promiseArray = [];
   let list;
   try {
-    list = await getFunction.getLists(board.id);
+    list = await getLists(board.id);
   } catch (err) {
     console.error("Error in fetching List", err);
   }
 
   //   get cards for one  id
-  promiseArray.push(getFunction.getCards("qwsa221"));
+  promiseArray.push(getCards("qwsa221"));
 
   //getCards for two ids
 
@@ -27,13 +27,13 @@ const main = async () => {
       jwkh245: true,
     };
     if (cardToPoint[list[i].id]) {
-      promiseArray.push(getFunction.getCards(list[i].id));
+      promiseArray.push(getCards(list[i].id));
     }
   }
   // getCard for all ids
 
   for (let i = 0; i < list.length; i++) {
-    promiseArray.push(getFunction.getCards(list[i].id));
+    promiseArray.push(getCards(list[i].id));
   }
 
   try {
